@@ -1,0 +1,43 @@
+<!-- 这是一个SVG图标模板，您可以用它来生成不同尺寸的PNG图标 -->
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="512" height="512" rx="80" fill="url(#bg)"/>
+  
+  <!-- 边框 -->
+  <rect x="40" y="40" width="432" height="432" rx="40" fill="none" stroke="#fff" stroke-width="8"/>
+  
+  <!-- 网格 -->
+  <g stroke="#fff" stroke-width="3" opacity="0.6">
+    <!-- 垂直线 -->
+    <line x1="144" y1="80" x2="144" y2="432"/>
+    <line x1="256" y1="80" x2="256" y2="432"/>
+    <line x1="368" y1="80" x2="368" y2="432"/>
+    
+    <!-- 水平线 -->
+    <line x1="80" y1="144" x2="432" y2="144"/>
+    <line x1="80" y1="256" x2="432" y2="256"/>
+    <line x1="80" y1="368" x2="432" y2="368"/>
+  </g>
+  
+  <!-- 地雷图标 -->
+  <circle cx="256" cy="200" r="25" fill="#ff4757"/>
+  <circle cx="256" cy="200" r="15" fill="#2f3542"/>
+  
+  <!-- 数字 -->
+  <text x="180" y="280" fill="#fff" font-size="40" font-weight="bold" font-family="Arial">1</text>
+  <text x="300" y="280" fill="#fff" font-size="40" font-weight="bold" font-family="Arial">2</text>
+  
+  <!-- 旗帜 -->
+  <polygon points="350,320 350,380 360,380 360,320" fill="#fff"/>
+  <polygon points="360,320 380,330 360,340" fill="#ff4757"/>
+  
+  <!-- 标题 -->
+  <text x="256" y="450" fill="#fff" font-size="28" font-weight="bold" font-family="Arial" text-anchor="middle">扫雷</text>
+</svg>

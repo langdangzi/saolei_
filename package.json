@@ -1,0 +1,29 @@
+{
+  "name": "minesweeper-mobile",
+  "version": "1.0.0",
+  "description": "扫雷游戏移动应用",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --host=0.0.0.0 --port=3000",
+    "start": "live-server --host=0.0.0.0 --port=3000",
+    "build": "echo '构建PWA应用'",
+    "deploy:netlify": "npx netlify-cli deploy --prod --dir .",
+    "deploy:vercel": "npx vercel --prod",
+    "deploy:setup": "npm install -g netlify-cli vercel",
+    "android": "cordova build android",
+    "ios": "cordova build ios",
+    "run-android": "cordova run android",
+    "run-ios": "cordova run ios"
+  },
+  "keywords": [
+    "minesweeper",
+    "game",
+    "mobile",
+    "pwa"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

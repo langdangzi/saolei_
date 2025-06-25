@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>图标生成器</title>
+    <style>
+        canvas { border: 1px solid #ccc; margin: 10px; }
+        .container { display: flex; flex-wrap: wrap; }
+    </style>
+</head>
+<body>
+    <h1>扫雷游戏图标生成器</h1>
+    <div class="container" id="container"></div>
+    
+    <script>
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        
+        function createIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // 背景渐变
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // 圆角
+            ctx.globalCompositeOperation = 'destination-in';
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, size * 0.15);
+            ctx.fill();
+            ctx.globalCompositeOperation = 'source-over';
+            
+            // 地雷图标
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const mineSize = size * 0.25;
+            
+            // 地雷主体
+            ctx.fillStyle = '#2c3e50';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, mineSize, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // 地雷突起
+            const spikes = 8;
+            ctx.strokeStyle = '#2c3e50';
+            ctx.lineWidth = size * 0.02;
+            for (let i = 0; i < spikes; i++) {
+                const angle = (i * 2 * Math.PI) / spikes;
+                const startX = centerX + Math.cos(angle) * mineSize;
+                const startY = centerY + Math.sin(angle) * mineSize;
+                const endX = centerX + Math.cos(angle) * mineSize * 1.4;
+                const endY = centerY + Math.sin(angle) * mineSize * 1.4;
+                
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(endX, endY);
+                ctx.stroke();
+            }
+            
+            // 高光
+            ctx.fillStyle = '#ecf0f1';
+            ctx.beginPath();
+            ctx.arc(centerX - mineSize * 0.3, centerY - mineSize * 0.3, mineSize * 0.2, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            return canvas;
+        }
+        
+        function downloadIcon(canvas, size) {
+            const link = document.createElement('a');
+            link.download = `icon-${size}x${size}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // 创建所有尺寸的图标
+        sizes.forEach(size => {
+            const canvas = createIcon(size);
+            canvas.title = `${size}x${size}`;
+            
+            const wrapper = document.createElement('div');
+            wrapper.style.textAlign = 'center';
+            wrapper.style.margin = '10px';
+            
+            const label = document.createElement('div');
+            label.textContent = `${size}x${size}`;
+            
+            const downloadBtn = document.createElement('button');
+            downloadBtn.textContent = '下载';
+            downloadBtn.onclick = () => downloadIcon(canvas, size);
+            
+            wrapper.appendChild(label);
+            wrapper.appendChild(canvas);
+            wrapper.appendChild(downloadBtn);
+            
+            document.getElementById('container').appendChild(wrapper);
+        });
+        
+        // 自动下载所有图标
+        setTimeout(() => {
+            sizes.forEach(size => {
+                const canvas = createIcon(size);
+                downloadIcon(canvas, size);
+            });
+        }, 1000);
+    </script>
+</body>
+</html>

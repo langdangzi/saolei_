@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>扫雷游戏</title>
+    <meta name="description" content="一个现代化的扫雷游戏，支持多种难度等级">
+    <meta name="theme-color" content="#667eea">
+    <meta name="author" content="扫雷游戏开发团队">
+    <meta name="keywords" content="扫雷,游戏,益智,休闲,PWA">
+    
+    <!-- PWA支持 -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- iOS支持 -->
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="icons/icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="icons/icon-128x128.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="384x384" href="icons/icon-384x384.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512x512.png">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="扫雷游戏">
+    
+    <!-- Windows磁贴支持 -->
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="msapplication-TileImage" content="icons/icon-144x144.png">
+    <meta name="msapplication-config" content="browserconfig.xml">
+    
+    <!-- 标准图标 -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16x16.png">
+    <link rel="shortcut icon" href="icons/icon-72x72.png">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>🎮 扫雷游戏</h1>
+            <div class="game-info">
+                <div class="info-item">
+                    <span class="label">雷数:</span>
+                    <span id="mine-count">10</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">时间:</span>
+                    <span id="timer">000</span>
+                </div>
+                <div class="info-item">
+                    <button id="reset-btn" class="reset-button">🔄 重新开始</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="difficulty-selector">
+            <button class="difficulty-btn active" data-level="easy">简单 (9x9)</button>
+            <button class="difficulty-btn" data-level="medium">中等 (16x16)</button>
+            <button class="difficulty-btn" data-level="hard">困难 (30x16)</button>
+        </div>
+        
+        <div class="game-board" id="game-board">
+            <!-- 游戏格子将通过JavaScript动态生成 -->
+        </div>
+        
+        <div class="game-status" id="game-status">
+            <p>点击开始游戏！右键标记地雷。</p>
+        </div>
+    </div>
+    
+    <div class="modal" id="game-over-modal">
+        <div class="modal-content">
+            <h2 id="modal-title">游戏结束</h2>
+            <p id="modal-message">恭喜您获得胜利！</p>
+            <div class="modal-buttons">
+                <button id="play-again-btn" class="btn primary">再玩一次</button>
+                <button id="close-modal-btn" class="btn secondary">关闭</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

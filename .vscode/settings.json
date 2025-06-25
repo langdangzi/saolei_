@@ -1,0 +1,14 @@
+{
+    "workbench.colorTheme": "Default Dark+",
+    "editor.fontSize": 14,
+    "editor.wordWrap": "on",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "live-server.settings.donotShowInfoMsg": true,
+    "live-server.settings.donotVerifyTags": true,
+    "live-server.settings.port": 3000,
+    "live-server.settings.host": "localhost"
+}

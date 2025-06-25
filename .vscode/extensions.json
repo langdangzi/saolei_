@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "shailen.netlify",
+        "ms-vscode.live-server",
+        "ms-vscode.vscode-json",
+        "bradlc.vscode-tailwindcss",
+        "ritwickdey.liveserver",
+        "ms-vscode.vscode-typescript-next"
+    ]
+}

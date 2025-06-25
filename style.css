@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.game-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.label {
+    color: #666;
+}
+
+#mine-count, #timer {
+    color: #e74c3c;
+    background: #f8f9fa;
+    padding: 5px 10px;
+    border-radius: 10px;
+    min-width: 50px;
+    text-align: center;
+}
+
+.reset-button {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(238, 90, 82, 0.3);
+}
+
+.reset-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(238, 90, 82, 0.4);
+}
+
+.difficulty-selector {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.difficulty-btn {
+    background: #f8f9fa;
+    border: 2px solid #dee2e6;
+    padding: 10px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.difficulty-btn:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.difficulty-btn.active {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border-color: #667eea;
+}
+
+.game-board {
+    display: grid;
+    gap: 2px;
+    background: #ccc;
+    border: 3px solid #999;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 0 auto;
+    overflow: auto;
+    max-width: 100%;
+    max-height: 70vh;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(145deg, #f0f0f0, #d1d1d1);
+    border: 1px solid #999;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    user-select: none;
+    position: relative;
+}
+
+.cell:hover {
+    background: linear-gradient(145deg, #e8e8e8, #c8c8c8);
+    transform: scale(1.05);
+}
+
+.cell.revealed {
+    background: #fff;
+    border: 1px solid #ddd;
+    cursor: default;
+}
+
+.cell.revealed:hover {
+    transform: none;
+}
+
+.cell.mine {
+    background: linear-gradient(145deg, #ff6b6b, #ee5a52);
+    color: white;
+}
+
+.cell.flagged {
+    background: linear-gradient(145deg, #ffd93d, #ffcd02);
+    color: #d68910;
+}
+
+.cell.flagged::before {
+    content: "🚩";
+}
+
+.cell.mine.revealed::before {
+    content: "💣";
+}
+
+/* 数字颜色 */
+.cell[data-count="1"] { color: #0066cc; }
+.cell[data-count="2"] { color: #009900; }
+.cell[data-count="3"] { color: #ff0000; }
+.cell[data-count="4"] { color: #000080; }
+.cell[data-count="5"] { color: #800000; }
+.cell[data-count="6"] { color: #008080; }
+.cell[data-count="7"] { color: #000000; }
+.cell[data-count="8"] { color: #808080; }
+
+.game-status {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    font-size: 1.1em;
+    color: #666;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    animation: modalSlideIn 0.3s ease;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#modal-title {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+#modal-message {
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.btn.primary {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn.secondary {
+    background: #f8f9fa;
+    color: #666;
+    border: 2px solid #dee2e6;
+}
+
+.btn.secondary:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .header h1 {
+        font-size: 2em;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .difficulty-selector {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cell {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+    
+    .modal-content {
+        margin: 30% auto;
+        padding: 20px;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cell {
+        width: 22px;
+        height: 22px;
+        font-size: 11px;
+    }
+    
+    .difficulty-btn {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "folders": [
+        {
+            "name": "扫雷游戏 PWA",
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.exclude": {
+            "**/node_modules": true,
+            "**/.git": true,
+            "**/.DS_Store": true,
+            "**/Thumbs.db": true
+        },
+        "search.exclude": {
+            "**/node_modules": true,
+            "**/bower_components": true
+        },
+        "live-server.settings.donotShowInfoMsg": true,
+        "live-server.settings.port": 3000,
+        "live-server.settings.host": "localhost",
+        "emmet.includeLanguages": {
+            "javascript": "javascriptreact"
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "shailen.netlify",
+            "ms-vscode.live-server",
+            "bradlc.vscode-tailwindcss"
+        ]
+    }
+}

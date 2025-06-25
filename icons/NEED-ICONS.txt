@@ -1,0 +1,35 @@
+这是图标占位文件，请用以下方法之一替换为真实的PNG图标：
+
+方法1：使用在线图标生成器
+1. 访问 https://realfavicongenerator.net/ 或 https://www.favicon-generator.org/
+2. 上传一个地雷图案的图像
+3. 生成PWA图标包
+4. 下载并替换icons文件夹中的文件
+
+方法2：使用设计工具
+1. 使用Figma、Photoshop或其他设计工具
+2. 创建512x512的地雷图标
+3. 导出为PNG格式
+4. 使用在线工具批量生成不同尺寸
+
+方法3：使用命令行工具
+1. 安装ImageMagick: https://imagemagick.org/
+2. 创建一个512x512的PNG图标
+3. 运行以下命令生成所有尺寸：
+   magick icon-512x512.png -resize 72x72 icon-72x72.png
+   magick icon-512x512.png -resize 96x96 icon-96x96.png
+   magick icon-512x512.png -resize 128x128 icon-128x128.png
+   magick icon-512x512.png -resize 144x144 icon-144x144.png
+   magick icon-512x512.png -resize 152x152 icon-152x152.png
+   magick icon-512x512.png -resize 192x192 icon-192x192.png
+   magick icon-512x512.png -resize 384x384 icon-384x384.png
+
+所需的图标尺寸：
+- icon-72x72.png
+- icon-96x96.png  
+- icon-128x128.png
+- icon-144x144.png
+- icon-152x152.png
+- icon-192x192.png
+- icon-384x384.png
+- icon-512x512.png

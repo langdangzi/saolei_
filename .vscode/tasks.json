@@ -1,0 +1,74 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "启动开发服务器",
+            "command": "npm",
+            "args": ["run", "dev"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "安装依赖",
+            "command": "npm",
+            "args": ["install"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "部署到 Netlify",
+            "command": "npx",
+            "args": ["netlify-cli", "deploy", "--prod", "--dir", "."],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always"
+            },
+            "dependsOn": "构建 PWA"
+        },
+        {
+            "type": "shell",
+            "label": "部署到 Vercel",
+            "command": "npx",
+            "args": ["vercel", "--prod"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "构建 PWA",
+            "command": "echo",
+            "args": ["PWA 构建完成"],
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "预览 PWA",
+            "command": "npm",
+            "args": ["run", "dev"],
+            "group": "test",
+            "isBackground": true,
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "new"
+            }
+        }
+    ]
+}
